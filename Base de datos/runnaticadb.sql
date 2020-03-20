@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-03-2020 a las 21:35:16
+-- Tiempo de generación: 20-03-2020 a las 04:04:06
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -209,16 +209,34 @@ ALTER TABLE `comentarios`
   MODIFY `id_foro` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `competencia`
+--
+ALTER TABLE `competencia`
+  MODIFY `id_competencia` int(10) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
   MODIFY `id_inscripcion` int(10) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `metodo_pago`
+--
+ALTER TABLE `metodo_pago`
+  MODIFY `id_metodopago` int(5) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `tipo_comp`
 --
 ALTER TABLE `tipo_comp`
   MODIFY `id_tipo_comp` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `u_foraneo`
@@ -234,23 +252,23 @@ ALTER TABLE `u_foraneo`
 -- Filtros para la tabla `comentarios`
 --
 ALTER TABLE `comentarios`
-  ADD CONSTRAINT `comentarios_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`),
-  ADD CONSTRAINT `comentarios_ibfk_2` FOREIGN KEY (`id_competencia`) REFERENCES `competencia` (`id_competencia`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `comentarios_ibfk_3` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`),
+  ADD CONSTRAINT `comentarios_ibfk_4` FOREIGN KEY (`id_competencia`) REFERENCES `competencia` (`id_competencia`);
 
 --
 -- Filtros para la tabla `competencia`
 --
 ALTER TABLE `competencia`
-  ADD CONSTRAINT `competencia_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`),
-  ADD CONSTRAINT `competencia_ibfk_6` FOREIGN KEY (`id_tipo_comp`) REFERENCES `tipo_comp` (`id_tipo_comp`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `competencia_ibfk_6` FOREIGN KEY (`id_tipo_comp`) REFERENCES `tipo_comp` (`id_tipo_comp`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `competencia_ibfk_7` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`);
 
 --
 -- Filtros para la tabla `inscripciones`
 --
 ALTER TABLE `inscripciones`
-  ADD CONSTRAINT `inscripciones_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`),
-  ADD CONSTRAINT `inscripciones_ibfk_2` FOREIGN KEY (`id_competencia`) REFERENCES `competencia` (`id_competencia`),
-  ADD CONSTRAINT `inscripciones_ibfk_3` FOREIGN KEY (`id_foraneo`) REFERENCES `u_foraneo` (`id_foraneo`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `inscripciones_ibfk_3` FOREIGN KEY (`id_foraneo`) REFERENCES `u_foraneo` (`id_foraneo`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `inscripciones_ibfk_4` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`),
+  ADD CONSTRAINT `inscripciones_ibfk_5` FOREIGN KEY (`id_competencia`) REFERENCES `competencia` (`id_competencia`);
 
 --
 -- Filtros para la tabla `usuario`
