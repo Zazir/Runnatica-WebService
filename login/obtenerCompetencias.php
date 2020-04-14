@@ -1,7 +1,7 @@
 <?PHP
 include 'conexion.php';
 
-$consulta = "SELECT * FROM tipo_comp";
+$consulta = "SELECT * FROM competencia";
 $resultado = $conexion -> query($consulta);
 
 while($fila = $resultado -> fetch_array()){

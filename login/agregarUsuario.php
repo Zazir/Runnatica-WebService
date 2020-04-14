@@ -13,7 +13,7 @@ $Ciudad = $_GET['Ciudad'];
 $Estado = $_GET['Estado'];
 $Pais = $_GET['Pais'];
 
-$AgregarUsuario = "INSERT INTO usuario VALUES ('".$Contrasena."','".$Telefono."','".$Terminos."','".$Sexo."','".$FechaNacimiento."','".$NombreYApellido."','".$Email."','".$TipoUsr."','".$Ciudad."','".$Estado."','".$Pais."');";
+$AgregarUsuario = "INSERT INTO usuario VALUES (0, null,'".$Contrasena."','".$Telefono."','".$Terminos."','".$Sexo."','".$FechaNacimiento."','".$NombreYApellido."','".$Email."','".$TipoUsr."','".$Ciudad."','".$Estado."','".$Pais."');";
 mysqli_query($conexion, $AgregarUsuario);
 mysqli_close($conexion);
 ?>
