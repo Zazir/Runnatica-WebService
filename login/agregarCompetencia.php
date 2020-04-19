@@ -1,15 +1,25 @@
-<?PHP
-include 'conexion.php';
+<?PHP 
+inclide 'conexion.php';
 
-$NombreCompetencia = $_GET['NombreCompetencia'];
-$Descripcion = $_GET['Descripcion'];
-$Precio = $_GET['Precio'];
+$Foto = $_GET[''];
+$Descripcion = $_GET[''];
+$Aval = $_GET[''];
+$Coordenadas = $_GET[''];
+$Nombre_competencia = $_GET[''];
+$Pais  = $_GET[''];
+$Colonia = $_GET[''];
+$Calle = $_GET[''];
+$Ciudad = $_GET[''];
+$Fecha = $_GET[''];
+$Resultados = $_GET[''];
+$Hora = $_GET[''];
+$Estado = $_GET[''];
+$Reembolso = $_GET[''];
+$Precio = $_GET[''];
 
-$InsertarCompetencia = 'INSERT INTO competencia VALUES ("'.$FOTO.'", )';
-
-//Insert con el método mysqli_query, parámetro 1 conexión, parámetro 2 string(cadena de texto con valores concatenados)
-mysqli_query($conexion, $InsertarCompetencia);
-
-//Métdo para cerrar conexión, bastante importante NO SE TE OLVIDE CERRAR
+//INSERT INTO competencia VALUES (1, 1, 1, "", "Esta es la descripcion", "", "uuyd53te5", "Nombre de competencia", "Pais", "Colonia", "Calle", "Ciudad", "02122000", "", 34, "Jalisco", "", "Si", "5000", 0, 0, 0, 0, "", "", 0 )
+$AgregarCompetencia = "INSERT INTO competencia VALUES (0, 0, 0, "",'".$Descripcion."', "", '".$Coordenadas."', '".$Nombre_competencia."', '".$Pais."', '".$Colonia."', '".$Calle."', '".$Ciudad."', '".$Fecha."', "", '".$Hora."', '".$Estado."', "", '".$Reembolso."', '".$Precio."', 0, 0, 0, 0, "", "", 0 );";
+mysqli_query($conexion, $AgregarCompetencia);
 mysqli_close($conexion);
+
 ?>
