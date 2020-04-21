@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-03-2020 a las 04:04:06
+-- Tiempo de generación: 21-04-2020 a las 23:27:34
 -- Versión del servidor: 10.1.34-MariaDB
 -- Versión de PHP: 7.2.8
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `runnaticadb`
+-- Base de datos: `runnatica`
 --
 
 -- --------------------------------------------------------
@@ -46,22 +46,37 @@ CREATE TABLE `competencia` (
   `id_competencia` int(10) NOT NULL,
   `id_usuario` int(10) NOT NULL,
   `id_tipo_comp` int(10) NOT NULL,
-  `foto` varchar(200) NOT NULL,
+  `foto` varchar(200) DEFAULT NULL,
   `descripcion` longtext NOT NULL,
-  `aval` varchar(200) NOT NULL,
+  `aval` varchar(200) DEFAULT NULL,
   `coordenadas` varchar(50) NOT NULL,
   `nom_comp` varchar(100) NOT NULL,
   `pais` varchar(60) NOT NULL,
   `colonia` varchar(40) NOT NULL,
   `calle` varchar(40) NOT NULL,
   `ciudad` varchar(60) NOT NULL,
-  `fecha` date NOT NULL,
-  `resultados` varchar(200) NOT NULL,
+  `fecha` int(11) NOT NULL,
+  `resultados` varchar(200) DEFAULT NULL,
   `hora` varchar(8) NOT NULL,
   `estado` varchar(50) NOT NULL,
-  `divisa` varchar(50) NOT NULL,
-  `reembolso` varchar(2) NOT NULL
+  `divisa` varchar(50) DEFAULT NULL,
+  `reembolso` varchar(2) DEFAULT NULL,
+  `precio` int(5) DEFAULT NULL,
+  `cant_normal_cat` int(5) NOT NULL,
+  `cant_foraneos_cat` int(5) DEFAULT NULL,
+  `max_edad_cat` int(2) NOT NULL,
+  `min_edad_cat` int(2) NOT NULL,
+  `nombre_cat` varchar(150) NOT NULL,
+  `descripcion_cat` varchar(200) NOT NULL,
+  `kilometros_cat` int(3) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `competencia`
+--
+
+INSERT INTO `competencia` (`id_competencia`, `id_usuario`, `id_tipo_comp`, `foto`, `descripcion`, `aval`, `coordenadas`, `nom_comp`, `pais`, `colonia`, `calle`, `ciudad`, `fecha`, `resultados`, `hora`, `estado`, `divisa`, `reembolso`, `precio`, `cant_normal_cat`, `cant_foraneos_cat`, `max_edad_cat`, `min_edad_cat`, `nombre_cat`, `descripcion_cat`, `kilometros_cat`) VALUES
+(1, 1, 1, '', 'Esta es la descripcion', '', 'uuyd53te5', 'Nombre de competencia', 'Pais', 'Colonia', 'Calle', 'Ciudad', 2122000, '', '34', 'Jalisco', '', 'Si', 5000, 0, 0, 0, 0, '', '', 0);
 
 -- --------------------------------------------------------
 
@@ -88,23 +103,12 @@ CREATE TABLE `metodo_pago` (
   `nombre_metodo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Estructura de tabla para la tabla `tipo_comp`
+-- Volcado de datos para la tabla `metodo_pago`
 --
 
-CREATE TABLE `tipo_comp` (
-  `id_tipo_comp` int(10) NOT NULL,
-  `cant_normal` int(5) NOT NULL,
-  `cant_foraneos` int(5) NOT NULL,
-  `max_edad` int(2) NOT NULL,
-  `min_edad` int(2) NOT NULL,
-  `nombre` varchar(150) NOT NULL,
-  `descripcion` varchar(200) NOT NULL,
-  `precio` int(4) NOT NULL,
-  `kilometros` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+INSERT INTO `metodo_pago` (`id_metodopago`, `nombre_metodo`) VALUES
+(1, 'Conekta');
 
 -- --------------------------------------------------------
 
@@ -114,7 +118,7 @@ CREATE TABLE `tipo_comp` (
 
 CREATE TABLE `usuario` (
   `id_usuarios` int(10) NOT NULL,
-  `id_metodopago` int(5) NOT NULL,
+  `id_metodopago` int(5) DEFAULT NULL,
   `contrasena` varchar(20) NOT NULL,
   `telefono` bigint(24) NOT NULL,
   `terminos` tinyint(1) NOT NULL,
@@ -124,9 +128,17 @@ CREATE TABLE `usuario` (
   `correo` varchar(60) NOT NULL,
   `tipo_usr` tinyint(1) NOT NULL,
   `ciudad` varchar(50) NOT NULL,
-  `estado` int(50) NOT NULL,
-  `pais` int(50) NOT NULL
+  `estado` varchar(60) NOT NULL,
+  `pais` varchar(80) NOT NULL,
+  `foto_usuario` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuarios`, `id_metodopago`, `contrasena`, `telefono`, `terminos`, `sexo`, `f_nacimiento`, `nombre`, `correo`, `tipo_usr`, `ciudad`, `estado`, `pais`, `foto_usuario`) VALUES
+(1, 1, 'fernando', 2233445566, 1, 'hombre', '2020-02-03', 'Ivan Lopez', 'chocosogamer@gmail.com', 1, 'Guadalajara', 'Jalisco', 'México', 'qsdwEFWRFAERFWERSRTG');
 
 -- --------------------------------------------------------
 
@@ -179,12 +191,6 @@ ALTER TABLE `metodo_pago`
   ADD PRIMARY KEY (`id_metodopago`);
 
 --
--- Indices de la tabla `tipo_comp`
---
-ALTER TABLE `tipo_comp`
-  ADD PRIMARY KEY (`id_tipo_comp`);
-
---
 -- Indices de la tabla `usuario`
 --
 ALTER TABLE `usuario`
@@ -212,7 +218,7 @@ ALTER TABLE `comentarios`
 -- AUTO_INCREMENT de la tabla `competencia`
 --
 ALTER TABLE `competencia`
-  MODIFY `id_competencia` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_competencia` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `inscripciones`
@@ -224,19 +230,13 @@ ALTER TABLE `inscripciones`
 -- AUTO_INCREMENT de la tabla `metodo_pago`
 --
 ALTER TABLE `metodo_pago`
-  MODIFY `id_metodopago` int(5) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `tipo_comp`
---
-ALTER TABLE `tipo_comp`
-  MODIFY `id_tipo_comp` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_metodopago` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuarios` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `u_foraneo`
@@ -259,7 +259,6 @@ ALTER TABLE `comentarios`
 -- Filtros para la tabla `competencia`
 --
 ALTER TABLE `competencia`
-  ADD CONSTRAINT `competencia_ibfk_6` FOREIGN KEY (`id_tipo_comp`) REFERENCES `tipo_comp` (`id_tipo_comp`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `competencia_ibfk_7` FOREIGN KEY (`id_usuario`) REFERENCES `usuario` (`id_usuarios`);
 
 --
