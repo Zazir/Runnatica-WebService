@@ -1,6 +1,6 @@
 <?PHP
 $hostname = "localhost";
-$database = "runnatica";
+$database = "runnaticadb";
 $username = "root";
 $password = "";
 
