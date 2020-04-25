@@ -18,7 +18,7 @@ $Reembolso = $_GET[''];
 $Precio = $_GET[''];
 
 //INSERT INTO competencia VALUES (1, 1, 1, "", "Esta es la descripcion", "", "uuyd53te5", "Nombre de competencia", "Pais", "Colonia", "Calle", "Ciudad", "02122000", "", 34, "Jalisco", "", "Si", "5000", 0, 0, 0, 0, "", "", 0 )
-$AgregarCompetencia = "INSERT INTO competencia VALUES (0, 0, 0, "",'".$Descripcion."', "", '".$Coordenadas."', '".$Nombre_competencia."', '".$Pais."', '".$Colonia."', '".$Calle."', '".$Ciudad."', '".$Fecha."', "", '".$Hora."', '".$Estado."', "", '".$Reembolso."', '".$Precio."', 0, 0, 0, 0, "", "", 0 );";
+$AgregarCompetencia = "INSERT INTO competencia VALUES (0, 0, 0, "",'".$Descripcion."', "", '".$Coordenadas."', '".$Nombre_competencia."', "", '".$Colonia."', '".$Calle."', '".$Ciudad."', '".$Fecha."', "", '".$Hora."', "", "", "", '".$Precio."', 0, 0, 0, 0, "", "", 0 );";
 mysqli_query($conexion, $AgregarCompetencia);
 mysqli_close($conexion);
 
